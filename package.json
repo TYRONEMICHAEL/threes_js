@@ -1,0 +1,37 @@
+{
+  "name": "threes",
+  "version": "0.1.0",
+  "description": "Recreating the Threes game using reactive and functional techniques.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "lint": "eslint source && eslint app",
+    "build-source": "npm run clean && browserify -s App source/board.js -t babelify > build/board.js",
+    "build-app": "browserify -s appClient app/app-client.js -t babelify > build/app-client.js",
+    "build": "npm run build-source && npm run build-app",
+    "test": "echo 'No tests defined!'",
+    "check": "npm run lint && npm run build && npm test",
+    "start": "npm run check && babel-node app/server.js",
+    "validate": "npm run check && npm outdated --depth 0"
+  },
+  "pre-commit": [
+    "validate"
+  ],
+  "keywords": [
+    "react"
+  ],
+  "author": "Tyrone Michael Avnit <tyronemichael@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.4.7",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.1",
+    "eslint": "^0.21.2",
+    "express": "^4.12.4",
+    "ava": "^0.14.0"
+  },
+  "dependencies": {
+    "rxjs": "^5.0.0-beta.7",
+    "react": "^0.13.3"
+  }
+}
