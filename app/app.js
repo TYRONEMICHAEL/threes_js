@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
       <body>
         <div id="content"></div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.2/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.15.0/react.js"></script>
         <script src="/app-client.js"></script>
       </body>
     </html>
