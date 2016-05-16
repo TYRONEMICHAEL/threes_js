@@ -3,7 +3,7 @@
 const _ = require('underscore');
 
 let move = function (currentBoard) {
-  let board = currentBoard.slice();
+  let board = _.extend([], currentBoard);
   let setMoving = function (row) {
     _.rest(row, 1).forEach((tile, index) => {
       let sibling = row[index];
