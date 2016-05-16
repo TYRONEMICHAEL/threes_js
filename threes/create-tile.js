@@ -1,41 +1,63 @@
 'use strict';
 
-module.exports = function (number = 0) {
-  var attr = {
+const emptyTile = 0;
+const blueTile = 1;
+const redTile = 2;
+
+module.exports = function (number = emptyTile) {
+  let attr = {
     number: number,
     isMoving: false
   };
 
-  var getNumber = function () {
+  let getNumber = function () {
     return attr.number;
   };
 
-  var setNumber = function (val) {
-    attr.number = val;
+  let isBlueTile = function () {
+    return getNumber() === blueTile;
   };
 
-  var isMoving = function () {
+  let isRedTile = function () {
+    return getNumber() === redTile;
+  };
+
+  let isEmpty = function () {
+    return attr.number === emptyTile;
+  };
+
+  let isMoving = function () {
     return attr.isMoving;
   };
 
-  var setMoving = function (moving) {
-    attr.isMoving = moving;
+  let setMoving = function (sibling) {
+    if (
+      sibling.isMoving() ||
+      sibling.isEmpty() ||
+      sibling.isBlueTile() && isRedTile() ||
+      sibling.isRedTile() && isBlueTile() ||
+      !isBlueTile() && !isRedTile() && getNumber() === sibling.getNumber()
+    ) {
+      attr.isMoving = true;
+    } else {
+      attr.isMoving = false;
+    }
   };
 
-  var isEmpty = function () {
-    return attr.number === 0;
-  };
-
-  var setEmpty = function () {
-    attr.number = 0;
+  let update = function () {
+    if (isMoving()) {
+      attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
+      attr.isMoving = false;
+    }
   };
 
   return {
-    getNumber: getNumber,
-    setNumber: setNumber,
-    isMoving: isMoving,
-    setMoving: setMoving,
-    isEmpty: isEmpty,
-    setEmpty: setEmpty
+    getNumber,
+    isEmpty,
+    isRedTile,
+    isBlueTile,
+    isMoving,
+    setMoving,
+    update
   };
 };

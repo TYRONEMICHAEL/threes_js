@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('underscore');
-const createTile = require('./createTile');
+const createTile = require('./create-tile');
 const deck = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
 
 module.exports = function createBoard () {
