@@ -12,55 +12,6 @@ test('tile has the correct properties', t => {
   t.true(!tile.isBlueTile());
 });
 
-test('cannot setMoving when sibling is a blue tile and tile is a blue tile', t => {
-  let tile = createTile(1);
-  let sibling = createTile(1);
-  tile.setMoving(sibling);
-  t.true(!tile.isMoving());
-});
-
-test('cannot setMoving when sibling is a red tile and tile is a red tile', t => {
-  let tile = createTile(2);
-  let sibling = createTile(2);
-  tile.setMoving(sibling);
-  t.true(!tile.isMoving());
-});
-
-test('cannot setMoving when sibling is a regular tile and tile is a red tile', t => {
-  let tile = createTile(3);
-  let sibling = createTile(2);
-  tile.setMoving(sibling);
-  t.true(!tile.isMoving());
-});
-
-test('cannot setMoving when sibling is a regular tile and tile is a blue tile', t => {
-  let tile = createTile(3);
-  let sibling = createTile(1);
-  tile.setMoving(sibling);
-  t.true(!tile.isMoving());
-});
-
-test('cannot setMoving when sibling is a regular tile and tile is a regular tile with a different value', t => {
-  let tile = createTile(3);
-  let sibling = createTile(6);
-  tile.setMoving(sibling);
-  t.true(!tile.isMoving());
-});
-
-test('can setMoving when sibling is a blue tile and tile is a red tile', t => {
-  let tile = createTile(2);
-  let sibling = createTile(1);
-  tile.setMoving(sibling);
-  t.true(tile.isMoving());
-});
-
-test('can setMoving when both tiles are the same value and neither a red or blue tile', t => {
-  let tile = createTile(3);
-  let sibling = createTile(3);
-  tile.setMoving(sibling);
-  t.true(tile.isMoving());
-});
-
 test('updates the tile with the correct value', t => {
   let tile = createTile(3);
   let sibling = createTile(3);
