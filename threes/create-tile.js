@@ -5,50 +5,38 @@ const blueTile = 1;
 const redTile = 2;
 
 module.exports = function (number = emptyTile) {
-  let attr = {
+  const attr = {
     number: number,
     isMoving: false
   };
 
-  let getNumber = function () {
+  const getNumber = function () {
     return attr.number;
   };
 
-  let isBlueTile = function () {
+  const isBlueTile = function () {
     return getNumber() === blueTile;
   };
 
-  let isRedTile = function () {
+  const isRedTile = function () {
     return getNumber() === redTile;
   };
 
-  let isEmpty = function () {
+  const isEmpty = function () {
     return attr.number === emptyTile;
   };
 
-  let isMoving = function () {
+  const isMoving = function () {
     return attr.isMoving;
   };
 
-  let setMoving = function (sibling) {
-    if (
-      sibling.isMoving() ||
-      sibling.isEmpty() ||
-      sibling.isBlueTile() && isRedTile() ||
-      sibling.isRedTile() && isBlueTile() ||
-      !isBlueTile() && !isRedTile() && getNumber() === sibling.getNumber()
-    ) {
-      attr.isMoving = true;
-    } else {
-      attr.isMoving = false;
-    }
+  const setMoving = function () {
+    attr.isMoving = true;
   };
 
-  let update = function () {
-    if (isMoving()) {
-      attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
-      attr.isMoving = false;
-    }
+  const upgrade = function () {
+    attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
+    attr.isMoving = false;
   };
 
   return {
@@ -58,6 +46,6 @@ module.exports = function (number = emptyTile) {
     isBlueTile,
     isMoving,
     setMoving,
-    update
+    upgrade
   };
 };
