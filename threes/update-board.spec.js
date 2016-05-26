@@ -3,14 +3,8 @@
 const test = require('ava');
 const _ = require('underscore');
 const createTile = require('./create-tile');
+const moveBoard = require('./move-board');
 const updateBoard = require('./update-board');
-
-const getNumberOfMovingTiles = function (updatedBoard) {
-  return _.chain(updatedBoard)
-    .flatten()
-    .filter((tile) => tile.isMoving())
-    .value();
-};
 
 let board;
 
@@ -23,22 +17,16 @@ test.beforeEach(() => {
   ];
 });
 
-test('update the board when moving left', t => {
-  updateBoard.moveLeft(board);
-  t.true(getNumberOfMovingTiles(board).length === 8);
-});
+test('update board when moving left', t => {
+  moveBoard.left(board);
+  updateBoard.left(board);
 
-test('update the board when moving right', t => {
-  updateBoard.moveRight(board);
-  t.true(getNumberOfMovingTiles(board).length === 8);
-});
+  const updatedBoard = _.flatten(board).map(function (tile) {
+    return tile.getNumber();
+  });
 
-test('update the board when moving up', t => {
-  updateBoard.moveUp(board);
-  t.true(getNumberOfMovingTiles(board).length === 5);
-});
-
-test('update the board when moving down', t => {
-  updateBoard.moveDown(board);
-  t.true(getNumberOfMovingTiles(board).length === 6);
+  t.deepEqual(
+    [3, 2, 1, 0, 1, 2, 0, 0, 3, 2, 0, 0, 1, 0, 2, 0],
+    updatedBoard
+  );
 });

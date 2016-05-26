@@ -20,18 +20,18 @@ test('sets tile to moving', t => {
 
 test('upgrades a normal tile with the correct value', t => {
   const tile = createTile(3);
-  tile.upgrade();
+  tile.update();
   t.true(tile.getNumber() === 6);
 });
 
 test('upgrades a blue tile with the correct value', t => {
   const tile = createTile(1);
-  tile.upgrade();
+  tile.update();
   t.true(tile.getNumber() === 3);
 });
 
 test('upgrades a red tile with the correct value', t => {
   const tile = createTile(2);
-  tile.upgrade();
+  tile.update();
   t.true(tile.getNumber() === 3);
 });
