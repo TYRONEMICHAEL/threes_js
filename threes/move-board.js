@@ -31,10 +31,9 @@ const left = function (board) {
 
 const right = function (board) {
   const move = function (row) {
-    _.chain(row)
-      .first(row.length - 1)
+    _.first(row, row.length - 1)
       .reverse()
-      .each((tile, index) => {
+      .forEach((tile, index) => {
         const sibling = row[(row.length - 1) - index];
         if (canMove(tile, sibling)) {
           tile.setMoving();

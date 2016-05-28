@@ -30,3 +30,17 @@ test('update board when moving left', t => {
     updatedBoard
   );
 });
+
+test('update board when moving right', t => {
+  moveBoard.right(board);
+  updateBoard.right(board);
+
+  const updatedBoard = _.flatten(board).map(function (tile) {
+    return tile.getNumber();
+  });
+
+  t.deepEqual(
+    [0, 3, 0, 3, 0, 0, 1, 2, 0, 2, 1, 2, 0, 0, 1, 2],
+    updatedBoard
+  );
+});

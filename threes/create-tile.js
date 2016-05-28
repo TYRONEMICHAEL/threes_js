@@ -30,8 +30,8 @@ module.exports = function (number = emptyTile) {
     return attr.isMoving;
   };
 
-  const setMoving = function () {
-    attr.isMoving = true;
+  const setMoving = function (moving = true) {
+    attr.isMoving = moving;
   };
 
   const update = function () {
