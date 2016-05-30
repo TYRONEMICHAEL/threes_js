@@ -18,6 +18,12 @@ test('sets tile to moving', t => {
   t.true(tile.isMoving());
 });
 
+test('stops tile from moving', t => {
+  const tile = createTile(2);
+  tile.setMoving(false);
+  t.true(!tile.isMoving());
+});
+
 test('upgrades a normal tile with the correct value', t => {
   const tile = createTile(3);
   tile.update();

@@ -5,16 +5,18 @@ const createTile = require('./create-tile');
 
 const left = function (board) {
   const update = function (row) {
-    row.forEach(function (tile, rowIndex) {
-      const sibling = row[rowIndex - 1];
+    _.rest(row, 1).forEach(function (tile, rowIndex) {
+      const sibling = row[rowIndex];
+
       if (tile.isMoving()) {
-        row[rowIndex - 1] = tile;
-        row[rowIndex] = sibling;
+        row[rowIndex + 1] = sibling;
+        row[rowIndex] = tile;
+
         tile.setMoving(false);
 
         if (!sibling.isEmpty()) {
           tile.update();
-          row[rowIndex] = createTile();
+          row[rowIndex + 1] = createTile();
         }
       }
     });
@@ -24,30 +26,76 @@ const left = function (board) {
 };
 
 const right = function (board) {
-  const update = function (row, boardIndex) {
-      row
+  const update = function (row) {
+    _.first(row, row.length - 1)
       .reverse()
-      .forEach(function (sibling, rowIndex) {
-        const tile = row[rowIndex + 1];
-        if (tile && tile.isMoving()) {
-          row[rowIndex + 1] = sibling;
-          row[rowIndex] = tile;
+      .forEach(function (tile, rowIndex) {
+        const sibling = row[(row.length - 1) - rowIndex];
+
+        if (tile.isMoving()) {
+          row[(row.length - 2) - rowIndex] = sibling;
+          row[(row.length - 1) - rowIndex] = tile;
+
           tile.setMoving(false);
 
           if (!sibling.isEmpty()) {
             tile.update();
-            row[rowIndex + 1] = createTile();
+            row[(row.length - 2) - rowIndex] = createTile();
           }
-        }
+      }
     });
-
-    board[boardIndex] = _.chain(row).reverse().value();
   };
 
   board.forEach(update);
 };
 
+const up = function (board) {
+  const update = function (row, boardIndex) {
+    row.forEach(function (tile, rowIndex) {
+      const sibling = board[boardIndex][rowIndex];
+
+      if (tile.isMoving()) {
+        board[boardIndex + 1][rowIndex] = sibling;
+        board[boardIndex][rowIndex] = tile;
+
+        tile.setMoving(false);
+
+        if (!sibling.isEmpty()) {
+          tile.update();
+          board[boardIndex][rowIndex] = createTile();
+        }
+      }
+    });
+  };
+
+  _.rest(board, 1).forEach(update);
+};
+
+const down = function (board) {
+  const update = function (row, boardIndex) {
+    row.forEach(function (tile, rowIndex) {
+      const sibling = board[boardIndex][rowIndex];
+
+      if (tile.isMoving()) {
+        board[boardIndex + 1][rowIndex] = sibling;
+        board[boardIndex][rowIndex] = tile;
+
+        tile.setMoving(false);
+
+        if (!sibling.isEmpty()) {
+          tile.update();
+          board[boardIndex][rowIndex] = createTile();
+        }
+      }
+    });
+  };
+
+  _.rest(board, 1).forEach(update);
+};
+
 module.exports = {
   left,
-  right
+  right,
+  up,
+  down
 };

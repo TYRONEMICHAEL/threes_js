@@ -26,7 +26,12 @@ test('update board when moving left', t => {
   });
 
   t.deepEqual(
-    [3, 2, 1, 0, 1, 2, 0, 0, 3, 2, 0, 0, 1, 0, 2, 0],
+    [
+      3, 2, 1, 0,
+      1, 2, 0, 0,
+      3, 2, 0, 0,
+      1, 0, 2, 0
+    ],
     updatedBoard
   );
 });
@@ -40,7 +45,69 @@ test('update board when moving right', t => {
   });
 
   t.deepEqual(
-    [0, 3, 0, 3, 0, 0, 1, 2, 0, 2, 1, 2, 0, 0, 1, 2],
+    [
+      0, 3, 0, 3,
+      0, 0, 1, 2,
+      0, 2, 1, 2,
+      0, 0, 1, 2
+    ],
+    updatedBoard
+  );
+});
+
+test('update board when moving right', t => {
+  moveBoard.right(board);
+  updateBoard.right(board);
+
+  const updatedBoard = _.flatten(board).map(function (tile) {
+    return tile.getNumber();
+  });
+
+  t.deepEqual(
+    [
+      0, 3, 0, 3,
+      0, 0, 1, 2,
+      0, 2, 1, 2,
+      0, 0, 1, 2
+    ],
+    updatedBoard
+  );
+});
+
+test('update board when moving up', t => {
+  moveBoard.up(board);
+  updateBoard.up(board);
+
+  const updatedBoard = _.flatten(board).map(function (tile) {
+    return tile.getNumber();
+  });
+
+  t.deepEqual(
+    [
+      3, 1, 2, 1,
+      2, 1, 2, 0,
+      0, 1, 2, 2,
+      0, 0, 0, 0
+    ],
+    updatedBoard
+  );
+});
+
+test.skip('update board when moving up', t => {
+  moveBoard.down(board);
+  updateBoard.down(board);
+
+  const updatedBoard = _.flatten(board).map(function (tile) {
+    return tile.getNumber();
+  });
+
+  t.deepEqual(
+    [
+      0, 0, 0, 0,
+      3, 1, 2, 1,
+      0, 1, 2, 0,
+      2, 1, 2, 2
+    ],
     updatedBoard
   );
 });

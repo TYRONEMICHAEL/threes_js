@@ -36,7 +36,6 @@ module.exports = function (number = emptyTile) {
 
   const update = function () {
     attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
-    attr.isMoving = false;
   };
 
   return {
