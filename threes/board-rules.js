@@ -2,7 +2,7 @@
 
 const _ = require('underscore');
 
-let canMove = function (tileRules) {
+const canMove = (tileRules) => {
   const rules = _.extend({
     siblingTileIsMoving: false,
     siblingTileIsEmpty: false,

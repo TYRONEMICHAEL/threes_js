@@ -32,52 +32,58 @@ test('stops tile from moving', t => {
   t.true(!tile.isMoving());
 });
 
-test('sets and gets the next tile', t => {
+test('sets and gets the right tile', t => {
   const tile = createTile(2);
-  const nextTile = createTile(3);
-  t.true(!tile.getNext());
-  tile.setNext(nextTile);
-  t.is(tile.getNext(), nextTile);
+  const rightTile = createTile(3);
+  t.true(!tile.getRightTile());
+  tile.setRightTile(rightTile);
+  t.is(tile.getRightTile(), rightTile);
 });
 
-test('sets and gets the previous tile', t => {
+test('sets and gets the left tile', t => {
   const tile = createTile(2);
-  const prevTile = createTile(3);
-  t.true(!tile.getPrev());
-  tile.setPrev(prevTile);
-  t.is(tile.getPrev(), prevTile);
+  const leftTile = createTile(3);
+  t.true(!tile.getLeftTile());
+  tile.setLeftTile(leftTile);
+  t.is(tile.getLeftTile(), leftTile);
 });
 
 test('sets and gets the top tile', t => {
   const tile = createTile(2);
   const topTile = createTile(3);
-  t.true(!tile.getTop());
-  tile.setTop(topTile);
-  t.is(tile.getTop(), topTile);
+  t.true(!tile.getTopTile());
+  tile.setTopTile(topTile);
+  t.is(tile.getTopTile(), topTile);
 });
 
 test('sets and gets the bottom tile', t => {
   const tile = createTile(2);
   const bottomTile = createTile(3);
-  t.true(!tile.getBottom());
-  tile.setBottom(bottomTile);
-  t.is(tile.getBottom(), bottomTile);
+  t.true(!tile.getBottomTile());
+  tile.setBottomTile(bottomTile);
+  t.is(tile.getBottomTile(), bottomTile);
 });
 
-test('upgrades a normal tile with the correct value', t => {
+test('updates a normal tile with the correct value', t => {
   const tile = createTile(3);
   tile.update();
   t.true(tile.getNumber() === 6);
 });
 
-test('upgrades a blue tile with the correct value', t => {
+test('updates a blue tile with the correct value', t => {
   const tile = createTile(1);
   tile.update();
   t.true(tile.getNumber() === 3);
 });
 
-test('upgrades a red tile with the correct value', t => {
+test('updates a red tile with the correct value', t => {
   const tile = createTile(2);
   tile.update();
   t.true(tile.getNumber() === 3);
+});
+
+test('updates an empty tile with a value that is passed in as an argument', t => {
+  const tile = createTile();
+  tile.update(48);
+  t.true(tile.getNumber() === 48);
 });

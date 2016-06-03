@@ -4,74 +4,85 @@ const emptyTile = 0;
 const blueTile = 1;
 const redTile = 2;
 
-module.exports = function (number = emptyTile) {
+module.exports = (number = emptyTile) => {
   const attr = {
     number: number,
     isMoving: false
   };
 
-  const getNumber = function () {
+  const getNumber = () => {
     return attr.number;
   };
 
-  const isBlueTile = function () {
+  const isBlueTile = () => {
     return getNumber() === blueTile;
   };
 
-  const isRedTile = function () {
+  const isRedTile = () => {
     return getNumber() === redTile;
   };
 
-  const isEmpty = function () {
+  const isEmpty = () => {
     return attr.number === emptyTile;
   };
 
-  const setEmpty = function () {
+  const setEmpty = () => {
     attr.number = emptyTile;
+    return this;
   };
 
-  const isMoving = function () {
+  const isMoving = () => {
     return attr.isMoving;
   };
 
-  const setMoving = function (moving = true) {
+  const setMoving = (moving = true) => {
     attr.isMoving = moving;
+    return this;
   };
 
-  const getNext = function () {
+  const getRightTile = () => {
     return attr.next;
   };
 
-  const setNext = function (tile) {
+  const setRightTile = (tile) => {
     attr.next = tile;
+    return this;
   };
 
-  const getPrev = function () {
+  const getLeftTile = () => {
     return attr.prev;
   };
 
-  const setPrev = function (tile) {
+  const setLeftTile = (tile) => {
     attr.prev = tile;
+    return this;
   };
 
-  const getTop = function () {
+  const getTopTile = () => {
     return attr.top;
   };
 
-  const setTop = function (tile) {
+  const setTopTile = (tile) => {
     attr.top = tile;
+    return this;
   };
 
-  const getBottom = function () {
+  const getBottomTile = () => {
     return attr.bottom;
   };
 
-  const setBottom = function (tile) {
+  const setBottomTile = (tile) => {
     attr.bottom = tile;
+    return this;
   };
 
-  const update = function () {
-    attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
+  const update = (value) => {
+    if (isEmpty()) {
+      attr.number = value;
+    } else {
+      attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
+    }
+    return this;
   };
 
   return {
@@ -82,14 +93,14 @@ module.exports = function (number = emptyTile) {
     isBlueTile,
     isMoving,
     setMoving,
-    getNext,
-    setNext,
-    getPrev,
-    setPrev,
-    getTop,
-    setTop,
-    getBottom,
-    setBottom,
+    getRightTile,
+    setRightTile,
+    getLeftTile,
+    setLeftTile,
+    getTopTile,
+    setTopTile,
+    getBottomTile,
+    setBottomTile,
     update
   };
 };

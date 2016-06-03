@@ -4,7 +4,7 @@ const test = require('ava');
 const boardRules = require('./board-rules');
 const createTile = require('./create-tile');
 
-const canMove = function (tile, sibling) {
+const canMove = (tile, sibling) => {
   return boardRules.canMove({
     siblingTileIsMoving: sibling.isMoving(),
     siblingTileIsEmpty: sibling.isEmpty(),
@@ -81,5 +81,11 @@ test('can move when tile is a red tile and sibling is a blue tile', t => {
 test('can move when both tiles are the same value and neither a red or blue tile', t => {
   const tile = createTile(3);
   const sibling = createTile(3);
+  t.true(canMove(tile, sibling));
+});
+
+test('can move when sibling is empty and tile is either a red or blue tile', t => {
+  const tile = createTile(2);
+  const sibling = createTile(0);
   t.true(canMove(tile, sibling));
 });
