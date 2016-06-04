@@ -16,16 +16,13 @@ const canMove = (tile, sibling) => {
   });
 };
 
-const setMoving = (tile, sibling) => {
+const setMoving = function (tile, sibling) {
   if (canMove(tile, sibling)) {
     tile.setMoving();
-    return true;
   }
-
-  return false;
 };
 
-const moveTiles = (tiles, fn) => {
+const moveTiles = function (tiles, fn) {
   _.chain(tiles)
     .filter((tile) => tile[fn]())
     .each((tile) => setMoving(tile, tile[fn]()));
@@ -33,7 +30,7 @@ const moveTiles = (tiles, fn) => {
   return tiles;
 };
 
-const moveTilesReverse = (tiles, fn) => {
+const moveTilesReverse = function (tiles, fn) {
   _.chain(tiles.reverse())
     .filter((tile) => tile[fn]())
     .each((tile) => setMoving(tile, tile[fn]()));

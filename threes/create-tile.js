@@ -10,28 +10,28 @@ module.exports = (number = emptyTile) => {
     isMoving: false
   };
 
-  const getNumber = () => {
+  const getNumber = function () {
     return attr.number;
   };
 
-  const isBlueTile = () => {
+  const isBlueTile = function () {
     return getNumber() === blueTile;
   };
 
-  const isRedTile = () => {
+  const isRedTile = function () {
     return getNumber() === redTile;
   };
 
-  const isEmpty = () => {
+  const isEmpty = function () {
     return attr.number === emptyTile;
   };
 
-  const setEmpty = () => {
+  const setEmpty = function () {
     attr.number = emptyTile;
     return this;
   };
 
-  const isMoving = () => {
+  const isMoving = function () {
     return attr.isMoving;
   };
 
@@ -40,16 +40,16 @@ module.exports = (number = emptyTile) => {
     return this;
   };
 
-  const getRightTile = () => {
+  const getRightTile = function () {
     return attr.next;
   };
 
-  const setRightTile = (tile) => {
+  const setRightTile = function (tile) {
     attr.next = tile;
     return this;
   };
 
-  const getLeftTile = () => {
+  const getLeftTile = function () {
     return attr.prev;
   };
 
@@ -58,25 +58,25 @@ module.exports = (number = emptyTile) => {
     return this;
   };
 
-  const getTopTile = () => {
+  const getTopTile = function () {
     return attr.top;
   };
 
-  const setTopTile = (tile) => {
+  const setTopTile = function (tile) {
     attr.top = tile;
     return this;
   };
 
-  const getBottomTile = () => {
+  const getBottomTile = function () {
     return attr.bottom;
   };
 
-  const setBottomTile = (tile) => {
+  const setBottomTile = function (tile) {
     attr.bottom = tile;
     return this;
   };
 
-  const update = (value) => {
+  const update = function (value) {
     if (isEmpty()) {
       attr.number = value;
     } else {

@@ -1,9 +1,7 @@
 /*global React */
 'use strict';
 
-let render;
-
-render = function () {
+const render = function () {
   React.render(
     <div>Hello World</div>,
     document.getElementById('content')

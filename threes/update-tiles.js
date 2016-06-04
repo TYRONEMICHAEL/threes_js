@@ -8,13 +8,13 @@ const makeUpdate = (tile, sibling) => {
   tile.setMoving(false);
 };
 
-const updateTiles = (tiles, fn) => {
+const updateTiles = function (tiles, fn) {
   _.filter(tiles, (tile) => tile.isMoving())
     .forEach((tile) => makeUpdate(tile, tile[fn]()));
   return tiles;
 };
 
-const updateTilesInReverse = (tiles, fn) => {
+const updateTilesInReverse = function (tiles, fn) {
   _.filter(tiles.reverse(), (tile) => tile.isMoving())
     .forEach((tile) => makeUpdate(tile, tile[fn]()));
   return tiles.reverse();
