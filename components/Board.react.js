@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-var Board = React.createClass({
+const Board = React.createClass({
   render: function () {
-    var rows = this.props.rows
+    const rows = this.props.rows
       .map((row, rowIndex) =>
         <tr className='row' key={[rowIndex]}>
           {row.map((tile, tileIndex) =>

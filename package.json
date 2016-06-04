@@ -6,13 +6,13 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "lint": "eslint board && eslint app",
-    "build-board": "npm run clean && browserify -s App board/index.js -t babelify > build/board.js",
+    "build-board": "npm run clean && browserify -s App threes/board.js -t babelify > build/board.js",
     "build-app": "browserify -s appClient app/app-client.js -t babelify > build/app-client.js",
     "build": "npm run build-board && npm run build-app",
     "test-watch": "npm test -- --watch",
     "test": "ava ./**/*.spec.js",
     "check": "npm run lint && npm run build && npm test",
-    "start": "npm run check && babel-node app/server.js",
+    "start": "npm run build && babel-node app/server.js",
     "validate": "npm run check && npm outdated --depth 0"
   },
   "pre-commit": [
@@ -27,7 +27,7 @@
     "ava": "^0.14.0",
     "babel": "^6.5.2",
     "babel-preset-react": "^6.5.0",
-    "babelify": "^6.1.2",
+    "babelify": "^6.4.0",
     "browserify": "^10.2.1",
     "chokidar": "^1.4.3",
     "eslint": "^0.21.2",
@@ -38,6 +38,7 @@
     "react-shallow-testutils": "^2.0.0"
   },
   "dependencies": {
+    "babel-cli": "^6.9.0",
     "react": "^15.0.1",
     "rxjs": "^5.0.0-beta.7",
     "underscore": "^1.8.3"

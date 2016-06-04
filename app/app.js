@@ -1,7 +1,7 @@
 'use strict';
 
-import express from 'express';
-import path from 'path';
+const express = require('express');
+const path = require('path');
 
 let app = express();
 
@@ -14,8 +14,8 @@ app.get('/', function (req, res) {
       </head>
       <body>
         <div id="content"></div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.15.0/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
         <script src="/app-client.js"></script>
       </body>
     </html>
@@ -24,4 +24,4 @@ app.get('/', function (req, res) {
 
 app.use(express.static(path.resolve('build/')));
 
-export default app;
+module.exports = app;

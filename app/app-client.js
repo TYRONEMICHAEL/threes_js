@@ -1,9 +1,11 @@
-/*global React */
+/*global ReactDOM */
 'use strict';
 
+const App = require('../components/App.react');
+
 const render = function () {
-  React.render(
-    <div>Hello World</div>,
+  ReactDOM.render(
+    <App />,
     document.getElementById('content')
   );
 };
