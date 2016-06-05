@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Hello</title>
+        <title>Threes in JS</title>
       </head>
       <body>
         <div id="content"></div>
