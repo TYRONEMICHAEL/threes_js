@@ -19,9 +19,9 @@ module.exports = () => {
     return createGrid(tiles);
   };
 
-  const move = function () {
-    moveTiles.down(tiles);
-    updateTiles.down(tiles);
+  const move = function (e) {
+    moveTiles[e.keyIdentifier.toLowerCase()](tiles);
+    updateTiles[e.keyIdentifier.toLowerCase()](tiles);
   };
 
   generate();

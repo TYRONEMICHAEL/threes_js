@@ -17,7 +17,7 @@ const App = React.createClass({
       this.setState({
         rows: boardInterface.render()
       });
-    }, 300);
+    }, 100);
   },
 
   render: function () {
