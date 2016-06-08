@@ -14,6 +14,11 @@ module.exports = (number = emptyTile) => {
     return attr.number;
   };
 
+  const setNumber = function (num) {
+    attr.number = num;
+    return this;
+  };
+
   const isBlueTile = function () {
     return getNumber() === blueTile;
   };
@@ -76,23 +81,31 @@ module.exports = (number = emptyTile) => {
     return this;
   };
 
-  const update = function (value) {
-    if (isEmpty()) {
-      attr.number = value;
-    } else {
-      attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
-    }
+  const isNew = function () {
+    return attr.isNew;
+  };
+
+  const setNew = function (isNewTile = true) {
+    attr.isNew = isNewTile;
+    return this;
+  };
+
+  const update = function () {
+    attr.number = isBlueTile() || isRedTile() ? 3 : attr.number * 2;
     return this;
   };
 
   return {
     getNumber,
+    setNumber,
     isEmpty,
     setEmpty,
-    isRedTile,
-    isBlueTile,
+    isNew,
+    setNew,
     isMoving,
     setMoving,
+    isRedTile,
+    isBlueTile,
     getRightTile,
     setRightTile,
     getLeftTile,

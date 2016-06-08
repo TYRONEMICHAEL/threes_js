@@ -3,7 +3,11 @@
 const _ = require('underscore');
 
 const makeUpdate = (tile, sibling) => {
-  sibling.update(tile.getNumber());
+  if (sibling.isEmpty()) {
+    sibling.setNumber(tile.getNumber());
+  } else {
+    sibling.update();
+  }
   tile.setEmpty();
   tile.setMoving(false);
 };

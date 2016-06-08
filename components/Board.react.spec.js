@@ -17,14 +17,13 @@ test.beforeEach(() => {
 
 test('renders the component correctly', t => {
   const result = shallowRenderer.getRenderOutput();
-
   const grid = _.flatten(
     boardInterface.render()).map((tile) => tile.getNumber()
   );
 
   const renderedGrid = _.flatten(
     result.props.children.map((row) =>
-      row.props.children.map((tile) => tile.props.children)
+      row.props.children.map((tile) => tile.props.children.props.children)
     )
   );
 

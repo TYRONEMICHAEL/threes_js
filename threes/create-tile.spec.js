@@ -12,6 +12,13 @@ test('tile has the correct properties', t => {
   t.true(!tile.isBlueTile());
 });
 
+test('sets tile\'s number to a specific value', t => {
+  const tile = createTile(1);
+  t.true(tile.getNumber() === 1);
+  tile.setNumber(3);
+  t.true(tile.getNumber() === 3);
+});
+
 test('sets tile to empty', t => {
   const tile = createTile(1);
   t.true(tile.getNumber() === 1);
@@ -30,6 +37,14 @@ test('stops tile from moving', t => {
   const tile = createTile(2);
   tile.setMoving(false);
   t.true(!tile.isMoving());
+});
+
+test('mark tile as a new tile then remove the new property', t => {
+  const tile = createTile(1);
+  tile.setNew();
+  t.true(tile.isNew());
+  tile.setNew(false);
+  t.true(!tile.isNew());
 });
 
 test('sets and gets the right tile', t => {
@@ -80,10 +95,4 @@ test('updates a red tile with the correct value', t => {
   const tile = createTile(2);
   tile.update();
   t.true(tile.getNumber() === 3);
-});
-
-test('updates an empty tile with a value that is passed in as an argument', t => {
-  const tile = createTile();
-  tile.update(48);
-  t.true(tile.getNumber() === 48);
 });
