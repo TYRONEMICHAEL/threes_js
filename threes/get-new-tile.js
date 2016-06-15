@@ -17,10 +17,7 @@ const getTileIndex = function (tiles, fn) {
     }
   });
 
-  return _.chain(potentialColumns)
-    .shuffle()
-    .first()
-    .value();
+  return _.sample(potentialColumns);
 };
 
 const left = function (tiles) {
