@@ -12,7 +12,9 @@ const App = React.createClass({
   },
 
   componentDidMount: function () {
-    document.addEventListener('keydown', boardInterface.move);
+    document.addEventListener('keydown', (e) =>
+      boardInterface.move(e.keyIdentifier.toLowerCase())
+    );
     setInterval(() => {
       this.setState({
         rows: boardInterface.render()

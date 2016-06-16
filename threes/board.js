@@ -5,6 +5,8 @@ const linkTiles = require('./link-tiles');
 const createGrid = require('./create-grid');
 const moveTiles = require('./move-tiles');
 const updateTiles = require('./update-tiles');
+const getNewTile = require('./get-new-tile');
+const generateNumber = require('./generate-number');
 
 module.exports = () => {
   let tiles = [];
@@ -19,9 +21,12 @@ module.exports = () => {
     return createGrid(tiles);
   };
 
-  const move = function (e) {
-    moveTiles[e.keyIdentifier.toLowerCase()](tiles);
-    updateTiles[e.keyIdentifier.toLowerCase()](tiles);
+  const move = function (direction) {
+    let newTile;
+    moveTiles[direction](tiles);
+    newTile = getNewTile[direction](tiles);
+    updateTiles[direction](tiles);
+    newTile.setNumber(generateNumber(tiles));
   };
 
   generate();
