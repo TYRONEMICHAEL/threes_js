@@ -11,11 +11,11 @@ const boardInterface = require('../threes/board')();
 const Board = require('./Board.react');
 const shallowRenderer = TestUtils.createRenderer();
 
-test.beforeEach(() => {
+test.skip.beforeEach(() => {
   shallowRenderer.render(React.createElement(Board, { rows: boardInterface.render() }));
 });
 
-test('renders the component correctly', t => {
+test.skip('renders the component correctly', t => {
   const result = shallowRenderer.getRenderOutput();
   const grid = _.flatten(
     boardInterface.render()).map((tile) => tile.getNumber()
