@@ -18,7 +18,6 @@ const getCSS = (tile, direction) => {
 const Board = React.createClass({
   render: function () {
     const direction = this.props.direction;
-    console.log(direction);
     const rows = this.props.rows
       .map((row, rowIndex) =>
         <tr className='row' key={[rowIndex]}>
@@ -33,7 +32,19 @@ const Board = React.createClass({
       );
 
     return (
-      <table className='board'>{rows}</table>
+      <table className='board'>
+        <tbody>
+          {rows}
+        </tbody>
+        <tfoot>
+          <tr className='row'>
+            <h4 className="next-tile-title">next</h4>
+            <td className={ getCSS(this.props.nextTile) }>
+              <span className='tile__face'></span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     );
   }
 });

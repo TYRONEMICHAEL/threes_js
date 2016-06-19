@@ -36,6 +36,10 @@ module.exports = () => {
     nextTile.setNumber(generateNumber(tiles));
   };
 
+  const getNextTile = function () {
+    return nextTile;
+  };
+
   generate();
   nextTile = createTile(generateNumber(tiles));
 
@@ -43,6 +47,7 @@ module.exports = () => {
     generate,
     render,
     move,
-    update
+    update,
+    getNextTile
   };
 };

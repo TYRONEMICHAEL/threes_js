@@ -4,10 +4,13 @@ const React = require('react');
 const boardInterface = require('../threes/board')();
 const Board = require('../components/Board.react');
 
+const animationDuration = 200;
+
 const App = React.createClass({
   getInitialState: () => {
     return {
-      rows: boardInterface.render()
+      rows: boardInterface.render(),
+      nextTile: boardInterface.getNextTile()
     };
   },
 
@@ -23,9 +26,10 @@ const App = React.createClass({
       setTimeout(() => {
         boardInterface.update(direction);
         this.setState({
-          rows: boardInterface.render()
+          rows: boardInterface.render(),
+          nextTile: boardInterface.getNextTile()
         });
-      }, 300);
+      }, animationDuration);
     });
   },
 
@@ -33,10 +37,18 @@ const App = React.createClass({
     this.setState({ rows, direction });
   },
 
+  reset: function () {
+    boardInterface.generate();
+    this.setState({
+      rows: boardInterface.render()
+    });
+  },
+
   render: function () {
     return (
       <div className='threes'>
-        <Board rows={this.state.rows} direction={this.state.direction} />
+        <Board rows={this.state.rows} direction={this.state.direction} nextTile={this.state.nextTile} />
+        <button onClick={this.reset} className='reset-game'>new game</button>
       </div>
     );
   }

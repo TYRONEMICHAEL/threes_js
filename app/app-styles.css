@@ -1,20 +1,48 @@
 @keyframes moveRight {
     from { left: 0; }
-    to { left: -72px; }
+    to { left: 72px; }
 }
 
 @keyframes moveLeft {
     from { left: 0; }
-    to { left: 72px; }
+    to { left: -72px; }
 }
 
-@keyframes isNew {
+@keyframes moveUp {
+    from { top: 0; }
+    to { top: -102px; }
+}
+
+@keyframes moveDown {
+    from { top: 0; }
+    to { top: 102px; }
+}
+
+@keyframes showLeft {
   from { left: 70px; }
   to { left: 0; }
 }
 
+@keyframes showRight {
+  from { left: -70px; }
+  to { left: 0; }
+}
+
+@keyframes showBottom {
+  from { top: -102px; }
+  to { top: 0; }
+}
+
+@keyframes showTop {
+  from { top: 102px; }
+  to { top: 0; }
+}
+
 .threes {
   padding: 20px;
+  width: 330px;
+  margin: 0 auto;
+  color: #777E8C;
 }
 
 .board {
@@ -23,7 +51,6 @@
   background-color: #d0e6df;
   padding: 12px 16px;
   border-spacing: 10px 20px;
-  margin: 0 auto;
   overflow: hidden;
 }
 
@@ -68,22 +95,67 @@
 
   .tile--moving .tile__face {
     z-index: 2;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
   }
 
   .tile--moving-left .tile__face {
-    animation-name: moveRight;
-  }
-
-  .tile--moving-right .tile__face {
     animation-name: moveLeft;
   }
 
+  .tile--moving-right .tile__face {
+    animation-name: moveRight;
+  }
+
+  .tile--moving-up .tile__face {
+    animation-name: moveUp;
+  }
+
+  .tile--moving-down .tile__face {
+    animation-name: moveDown;
+  }
+
   .tile--new .tile__face {
-    animation-name: isNew;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
   }
+
+  .tile--new-left .tile__face {
+    animation-name: showLeft;
+  }
+
+  .tile--new-right .tile__face {
+    animation-name: showRight;
+  }
+
+  .tile--new-up .tile__face {
+    animation-name: showTop;
+  }
+
+  .tile--new-down .tile__face {
+    animation-name: showBottom;
+  }
+
+.reset-game {
+  margin: 20px 0px;
+  background: #d0e6df;
+  box-shadow: 0 8px #b6d9d9;
+  font-style: italic;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: 'Nunito',sans-serif;
+  border: 0;
+  font-size: 18px;
+  color: #777E8C;
+  cursor: pointer;
+}
+
+.next-tile-title {
+  font-family: 'Nunito',sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: normal;
+}

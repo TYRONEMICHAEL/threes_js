@@ -50,11 +50,12 @@ test('gets the correct css when tile is new', t => {
   let tileCSS;
   let expectedCSS = [
     'tile',
-    'tile--new'
+    'tile--new',
+    'tile--new-left'
   ];
 
   tile.setNew();
-  tileCSS = getCSS(tile);
+  tileCSS = getCSS(tile, 'left');
 
    t.is(_.difference(tileCSS, expectedCSS).length, 0);
 });

@@ -23,5 +23,9 @@ module.exports = (tileState, direction) => {
     tileCSS.push(css.isMoving + '-' + direction);
   }
 
+  if (tileState.isNew) {
+    tileCSS.push(css.isNew + '-' + direction);
+  }
+
   return tileCSS;
 };
