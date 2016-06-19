@@ -24,6 +24,7 @@ const setMoving = function (tile, sibling) {
 
 const moveTiles = function (tiles, fn) {
   _.chain(tiles)
+    .each((tile) => tile.setNew(false))
     .filter((tile) => tile[fn]())
     .each((tile) => setMoving(tile, tile[fn]()));
 
@@ -32,6 +33,7 @@ const moveTiles = function (tiles, fn) {
 
 const moveTilesReverse = function (tiles, fn) {
   _.chain(tiles.reverse())
+    .each((tile) => tile.setNew(false))
     .filter((tile) => tile[fn]())
     .each((tile) => setMoving(tile, tile[fn]()));
 

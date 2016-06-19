@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "babel-cli": "^6.9.0",
-    "radium": "^0.17.1",
+    "eventemitter3": "^1.2.0",
     "react": "^15.1.0",
     "underscore": "^1.8.3"
   },

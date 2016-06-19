@@ -1,5 +1,6 @@
 'use strict';
 
+const createTile = require('./create-tile');
 const createTiles = require('./create-tiles');
 const linkTiles = require('./link-tiles');
 const createGrid = require('./create-grid');
@@ -10,6 +11,8 @@ const generateNumber = require('./generate-number');
 
 module.exports = () => {
   let tiles = [];
+  let newTile;
+  let nextTile;
 
   const generate = function () {
     tiles = createTiles();
@@ -22,18 +25,24 @@ module.exports = () => {
   };
 
   const move = function (direction) {
-    let newTile;
     moveTiles[direction](tiles);
     newTile = getNewTile[direction](tiles);
+  };
+
+  const update = function (direction) {
     updateTiles[direction](tiles);
-    newTile.setNumber(generateNumber(tiles));
+    newTile.setNew();
+    newTile.setNumber(nextTile.getNumber());
+    nextTile.setNumber(generateNumber(tiles));
   };
 
   generate();
+  nextTile = createTile(generateNumber(tiles));
 
   return {
     generate,
     render,
-    move
+    move,
+    update
   };
 };

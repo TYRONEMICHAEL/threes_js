@@ -11,6 +11,7 @@ app.get('/', function (req, res) {
     <html>
       <head>
         <title>Threes in JS</title>
+        <link rel="stylesheet" type="text/css" href="app-styles.css">
       </head>
       <body>
         <div id="content"></div>
@@ -23,5 +24,6 @@ app.get('/', function (req, res) {
 });
 
 app.use(express.static(path.resolve('build/')));
+app.use(express.static(path.resolve('app/')));
 
 module.exports = app;
